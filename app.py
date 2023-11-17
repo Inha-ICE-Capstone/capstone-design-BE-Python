@@ -1,6 +1,7 @@
 # Flask와 Flask-RESTful을 import
 from flask import Flask, request
 from flask_restful import Resource, Api
+from flask_cors import CORS
 
 import bandit
 from bandit import DriftingFiniteBernoulliBanditTS
@@ -9,6 +10,7 @@ import pickle
 # Flask 애플리케이션 및 RESTful API 객체 생성
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 
 # RESTful API에서 사용할 리소스 정의
 class BanditResource(Resource):
