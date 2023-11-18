@@ -38,7 +38,7 @@ class DriftingFiniteBernoulliBanditTS:
                     self.prior_failure = np.where(np.arange(len(self.prior_failure)) == i, new_value, self.prior_failure)
 
     # 샘플링 후 정렬된 순서인 sorted_arm_ids 반환
-    def pick_action(self, available_arms):
+    def pick_action(self):
         """Pick an action from available arms based on Thompson sampling with Beta distribution."""
         # 베타 분포를 기반으로 각 암의 추정된 평균값을 샘플링합니다.
         sampled_means = np.random.beta(self.prior_success, self.prior_failure)
