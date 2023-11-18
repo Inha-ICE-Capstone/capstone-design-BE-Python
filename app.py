@@ -32,7 +32,6 @@ class BanditResource(Resource):
 
         # 응답 데이터와 HTTP 상태 코드 200을 반환
         return response_data, 200
-
     def patch(self):
         # 요청에서 JSON 데이터를 가져오기
         data = request.get_json()
@@ -52,6 +51,19 @@ class BanditResource(Resource):
 
         # 적절한 로직으로 응답 데이터 생성
         response_data = {}
+
+        # 응답 데이터와 HTTP 상태 코드 200을 반환
+        return response_data, 200
+
+    @app.route('/<string:ballotId>')
+    def get(ballotId):
+        ballot_id = ballotId
+
+        with open('bandit_model_' + ballot_id + '.pkl', 'rb') as file:
+            loaded_bandit = pickle.load(file)
+
+        # 적절한 로직으로 응답 데이터 생성
+        response_data = {"orderdList": loaded_bandit.pick_action()}
 
         # 응답 데이터와 HTTP 상태 코드 200을 반환
         return response_data, 200
