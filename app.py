@@ -32,6 +32,7 @@ class BanditResource(Resource):
 
         # 응답 데이터와 HTTP 상태 코드 200을 반환
         return response_data, 200
+
     def patch(self):
         # 요청에서 JSON 데이터를 가져오기
         data = request.get_json()
@@ -55,7 +56,7 @@ class BanditResource(Resource):
         # 응답 데이터와 HTTP 상태 코드 200을 반환
         return response_data, 200
 
-    @app.route('/<string:ballotId>')
+    @app.route('/bandit/<string:ballotId>')
     def get(ballotId):
         ballot_id = ballotId
 
@@ -69,7 +70,7 @@ class BanditResource(Resource):
         return response_data, 200
 
 # 애플리케이션에 리소스를 추가하고 해당 리소스에 대한 엔드포인트 설정
-api.add_resource(BanditResource, '/')
+api.add_resource(BanditResource, '/bandit')
 
 # 스크립트가 직접 실행될 때만 서버를 실행
 if __name__ == '__main__':
