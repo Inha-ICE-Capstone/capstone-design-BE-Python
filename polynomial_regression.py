@@ -12,10 +12,10 @@ def train_polynomial_regression():
     # 시간 데이터를 숫자로 변환(예: '7시' -> 7)
     df['시간'] = df['시간'].str.replace('시', '').astype(int)
 
-    # PolynomialFeatures 객체 생성 (2차항으로 설정)
+    # PolynomialFeatures 객체 생성 (3차항으로 설정)
     poly = PolynomialFeatures(degree=3)
 
-    # X를 2차항으로 변환
+    # X를 3차항으로 변환
     X = df['시간'].values.reshape(-1, 1)
     X_poly = poly.fit_transform(X)
 
