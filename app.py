@@ -1,4 +1,3 @@
-# Flask와 Flask-RESTful을 import
 import pickle
 
 from flask import Flask, request
@@ -8,7 +7,7 @@ from flask_restful import Resource, Api
 import bandit
 import polynomial_regression
 
-# Flask 애플리케이션 및 RESTful API 객체 생성
+# Flask 애플리케이션 및 RESTful API 객체 생성, CORS 적용
 app = Flask(__name__)
 api = Api(app)
 CORS(app)
@@ -18,6 +17,8 @@ CORS(app)
 class BanditResource(Resource):
     # HTTP POST 요청을 처리하는 메서드
     def post(self):
+    # Bandit 을 생성하는 함수
+
         # 요청에서 JSON 데이터를 가져오기
         data = request.get_json()
 
@@ -30,14 +31,13 @@ class BanditResource(Resource):
         with open(TYPE + '_bandit_model_' + ID + '.pkl', 'wb') as file:
             pickle.dump(new_bandit, file)
 
-        # 적절한 로직으로 응답 데이터 생성
         response_data = {}
 
-        # 응답 데이터와 HTTP 상태 코드 200을 반환
+        # 응답할 데이터가 없으므로 빈것과 200을 반환
         return response_data, 200
 
     def patch(self):
-        # 요청에서 JSON 데이터를 가져오기
+        # Bandit 을 업데이트 하는 함수
         data = request.get_json()
 
         TYPE = str(data.get('type'))
@@ -53,13 +53,12 @@ class BanditResource(Resource):
         with open(TYPE + '_bandit_model_' + ID + '.pkl', 'wb') as file:
             pickle.dump(loaded_bandit, file)
 
-        # 적절한 로직으로 응답 데이터 생성
         response_data = {}
 
-        # 응답 데이터와 HTTP 상태 코드 200을 반환
         return response_data, 200
 
     def get(self):
+    # Bandit을 사용해 관련 정보를 GET 하는 함수
         TYPE = request.args.get('type')
         ID = request.args.get('id')
 

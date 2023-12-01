@@ -5,7 +5,7 @@ class DriftingFiniteBernoulliBanditTS:
 
     # alpha0 beta0는 1, 감마값은 0.01 로 고정하고 arms 를 받아 bandit 생성
     def __init__(self, arms, gamma=0.01, a0=1, b0=1):
-        self.arms = arms  # 이제 arms는 ID의 리스트입니다.
+        self.arms = arms
         self.gamma = gamma
         self.a0 = a0
         self.b0 = b0
